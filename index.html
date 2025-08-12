@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Normal Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Pinyon+Script&family=Press+Start+2P&family=Raleway:ital,wght@0,100..900;1,100..900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="calculator-icon-1.ico">
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+
+        }
+        h1{
+            padding: 0%;
+            color: rgb(0, 208, 255);
+            font-size: 2em;
+            font-family: Share Tech Mono;
+            font-weight: lighter;
+        }
+        .buttons{
+            padding: 2%;
+            padding-top: 0%;
+            background-color: rgb(0, 29, 37);
+            border: 2px solid rgb(0, 213, 255);
+            border-radius: 5%;
+            /* width: 30vw; */
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            /* grid-template-rows: 100px 100px 100px 100px 100px 100px 100px; */
+            grid-template-rows: auto auto auto auto auto auto;
+            grid-auto-rows: 100px;
+
+        }
+        .numbers{
+            display: grid;
+            grid-column: 1;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 100px 100px;
+            grid-auto-rows: 100px;
+        }
+        .butonDesign{
+            background-color: rgb(0, 29, 35);
+            color: rgb(0, 217, 255);
+            font-size: 2em;
+        }
+        .operators{
+            display: grid;
+            grid-area: 3 /2 /-1 /3;
+        }
+        .functions{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        .display{
+            font-size: 5em;
+            color: rgb(0, 208, 255);
+            text-align: right;
+            min-height: 100px;
+            white-space: normal;
+            word-break: break-all;
+            border: 1px solid rgb(0, 208, 255);
+            background-color: rgb(0, 65, 84);
+            font-family: Share Tech Mono;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="buttons">
+        <h1 style="grid-column: span 2">Calculator By Ranjan</h1>
+        <div style="grid-column: span 2;" class="display"></div>
+        <div style="grid-column: span 1;" class="functions">
+            <button class="func butonDesign"> Clc</button>
+            <button class="func butonDesign"> Del</button>
+            <button class="func butonDesign"> =</button>
+        </div>
+        <div class="numbers">
+            <button class="num butonDesign"></button>
+            <button class="num butonDesign"></button>
+            <button class="num butonDesign"></button>
+            <button class="num butonDesign"></button>
+            <button class="num butonDesign"></button>
+            <button class="num butonDesign"></button>
+            <button class="num butonDesign"></button>
+            <button class="num butonDesign"></button>
+            <button class="num butonDesign"></button>
+            <button class="num butonDesign"></button>
+            <button class="num butonDesign">00</button>
+            <button class="num butonDesign">.</button>
+        </div>
+        <div class="operators">
+            <!-- basic -->
+            <button class="oper butonDesign">+</button>
+            <button class="oper butonDesign">-</button>
+            <button class="oper butonDesign">*</button>
+            <button class="oper butonDesign">/</button>
+            <button class="oper butonDesign">%</button>
+            <!-- advanced operators  -->
+            <!-- <button class="oper butonDesign">(</button>
+            <button class="oper butonDesign">)</button>
+            <button class="oper butonDesign">%</button>
+            <button class="oper butonDesign">^</button> -->
+        </div>
+        
+        
+    </div>
+    
+<script>
+    for (let i = 0; i<=9; i++){
+        document.querySelectorAll(".num")[i].innerHTML = (i);
+        // document.querySelectorAll(".num")[i].addEventListener("click", function(){
+        //     alert(i);
+        // });
+    }
+
+    const display = document.querySelector(".display");
+    const numButtons = document.querySelectorAll(".num");
+    const operButtons = document.querySelectorAll(".oper");
+    const funcButtons = document.querySelectorAll(".func");
+
+numButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        display.innerHTML += btn.innerHTML;
+    });
+});
+
+operButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        display.innerHTML += btn.innerHTML;
+    });
+});
+
+funcButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        let action = btn.innerHTML.trim();
+        if (action === "Clc") {
+            display.innerHTML = "";
+        } else if (action === "Del") {
+            display.innerHTML = display.innerHTML.slice(0, -1);
+        } else if (action === "=") {
+            try {
+                display.innerHTML = eval(display.innerHTML);
+            } catch {
+                display.innerHTML = "Error";
+            }
+        }
+    });
+});
+
+</script>
+</body>
+</html>
